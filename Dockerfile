@@ -1,15 +1,15 @@
 FROM ttbb/base:go AS build
-COPY . /opt/sh/compile
-WORKDIR /opt/sh/compile/pkg
+COPY . /opt/compile
+WORKDIR /opt/compile/pkg
 RUN go build -o metricbeat_mate .
 
 
 FROM ttbb/metricbeat:nake
 
-COPY docker-build /opt/sh/metricbeat/mate
+COPY docker-build /opt/metricbeat/mate
 
-COPY --from=build /opt/sh/compile/pkg/metricbeat_mate /opt/sh/metricbeat/mate/metricbeat_mate
+COPY --from=build /opt/compile/pkg/metricbeat_mate /opt/metricbeat/mate/metricbeat_mate
 
-WORKDIR /opt/sh/metricbeat
+WORKDIR /opt/metricbeat
 
-CMD ["/usr/bin/dumb-init", "bash", "-vx", "/opt/sh/metricbeat/mate/scripts/start.sh"]
+CMD ["/usr/bin/dumb-init", "bash", "-vx", "/opt/metricbeat/mate/scripts/start.sh"]
