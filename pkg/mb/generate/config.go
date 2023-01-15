@@ -17,6 +17,7 @@ func ConvMb() string {
 	sb.WriteString("  index.number_of_shards: 1\n")
 	sb.WriteString("  index.codec: best_compression\n")
 	sb.WriteString("setup.kibana:\n")
+	sb.WriteString(ConvKibanaAddr())
 	sb.WriteString("output.elasticsearch:\n")
 	sb.WriteString(ConvEsAddr())
 	sb.WriteString("processors:\n")
@@ -64,5 +65,9 @@ func ConvPromModule(module module.PrometheusModule) string {
 }
 
 func ConvEsAddr() string {
-	return "  hosts: [\"" + config.EsHost + ":9200\"]\n"
+	return "  hosts: [\"" + config.EsHost + "\"]\n"
+}
+
+func ConvKibanaAddr() string {
+	return "  host: " + config.KibanaHost
 }

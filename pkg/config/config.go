@@ -9,6 +9,6 @@ var (
 )
 
 func init() {
-	EsHost = gutil.GetEnvStr("ES_HOST", "localhost")
-	KibanaHost = gutil.GetEnvStr("KIBANA_HOST", "localhost")
+	EsHost = gutil.GetEnvStr("ES_HOST", "localhost:9200")
+	KibanaHost = gutil.GetEnvStr("KIBANA_HOST", "localhost:5601")
 }
