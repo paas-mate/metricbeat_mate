@@ -69,5 +69,5 @@ func ConvEsAddr() string {
 }
 
 func ConvKibanaAddr() string {
-	return "  host: " + config.KibanaHost
+	return "  host: " + config.KibanaHost + "\n"
 }
