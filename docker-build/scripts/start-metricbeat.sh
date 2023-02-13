@@ -37,6 +37,7 @@ echo "  index.codec: best_compression" >>$CONF_FILE
 echo "setup.kibana:" >>$CONF_FILE
 echo "  host: ${KIBANA_HOST:-locahost:5601}" >>$CONF_FILE
 echo "output.elasticsearch:" >>$CONF_FILE
+
 echo -n '  hosts: ["' >>$CONF_FILE
 echo -n ${ES_HOST:-locahost:9200} >> $CONF_FILE
 echo '"]' >>$CONF_FILE
