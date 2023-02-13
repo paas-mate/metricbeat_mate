@@ -42,8 +42,16 @@ echo -n ${ES_HOST:-locahost:9200} >> $CONF_FILE
 echo '"]' >>$CONF_FILE
 
 echo "processors:" >>$CONF_FILE
-echo "  - add_host_metadata: ~" >>$CONF_FILE
-echo "  - add_cloud_metadata: ~" >>$CONF_FILE
-echo "  - add_docker_metadata: ~" >>$CONF_FILE
-echo "  - add_kubernetes_metadata: ~" >>$CONF_FILE
+if [ ${HOST_METADATA_ENABLED:-true} ]; then
+   echo "  - add_host_metadata: ~" >>$CONF_FILE    
+fi
+if [ ${CLOUD_METADATA_ENABLED:-true} ]; then
+   echo "  - add_cloud_metadata: ~" >>$CONF_FILE
+fi
+if [ ${DOCKER_MATEDATA_ENABLED:-true} ]; then
+   echo "  - add_docker_metadata: ~" >>$CONF_FILE
+fi
+if [ ${KUBERNETES_METADATA_ENABLED} ]; then
+   echo "  - add_kubernetes_metadata: ~" >>$CONF_FILE
+fi
 nohup $METRICBEAT_HOME/metricbeat -e -system.hostfs=/hostfs -c $CONF_FILE >>$METRICBEAT_HOME/logs/metricbeat.stdout.log 2>>$METRICBEAT_HOME/logs/metricbeat.stderr.log &
