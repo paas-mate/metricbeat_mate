@@ -2,8 +2,8 @@
 
 mkdir -p $METRICBEAT_HOME/logs
 CONF_FILE=$METRICBEAT_HOME/metricbeat.yml
-echo "hostfs: \"/hostfs\"" >$CONF_FILE
-echo "metricbeat.config.modules" >$CONF_FILE
+echo 'hostfs: "/hostfs"' >$CONF_FILE
+echo "metricbeat.config.modules:" >$CONF_FILE
 echo "- module: system" >>$CONF_FILE
 echo "  period: 10s" >>$CONF_FILE
 echo "  metricsets:" >>$CONF_FILE
@@ -15,7 +15,6 @@ echo "    - process" >>$CONF_FILE
 echo "    - process_summary" >>$CONF_FILE
 echo "    - socket_summary" >>$CONF_FILE
 echo "    - socket" >>$CONF_FILE
-echo "  reload.enabled: true" >>$CONF_FILE
 echo "  process.include_top_n:" >>$CONF_FILE
 echo "    by_cpu: ${ES_CPU:-5}" >>$CONF_FILE
 echo "    by_memory: ${ES_MEMORY:-5}" >>$CONF_FILE
