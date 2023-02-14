@@ -3,8 +3,8 @@
 mkdir -p $METRICBEAT_HOME/logs
 CONF_FILE=$METRICBEAT_HOME/metricbeat.yml
 echo 'hostfs: "/hostfs"' >$CONF_FILE
-echo "metricbeat.config.modules:" >$CONF_FILE
-echo "  path: ${path.config}/modules.d/*.yml" >>$CONF_FILE
+echo "metricbeat.config.modules:" >>$CONF_FILE
+echo '  path: ${path.config}/modules.d/*.yml' >>$CONF_FILE
 echo "setup.template.settings:" >>$CONF_FILE
 echo "  index.number_of_shards: 1" >>$CONF_FILE
 echo "  index.codec: best_compression" >>$CONF_FILE
